@@ -54,6 +54,17 @@ function App() {
             setTodolists([...todolists])
         }
     }
+    const addTodolist = (title: string) => {
+        let newId = v1()
+        let newTodolist: TodolistType = {id: newId, title: title, filter: 'all'}
+        setTodolists([newTodolist, ...todolists])
+        setTasks({...tasks, [newId]: []})
+    }
+    const removeTodolist = (todolistId: string) => {
+        todolists = todolists.filter((tl) => tl.id !== todolistId)
+        delete tasks[todolistId]
+        setTodolists([...todolists])
+    }
     const removeTask = (todolistId: string, taskId: string) => {
         let todolistTasks = tasks[todolistId]
         tasks[todolistId] = todolistTasks.filter((t) => t.id !== taskId)
@@ -64,12 +75,6 @@ function App() {
         let todolistTasks = tasks[todolistId]
         tasks[todolistId] = [newTask, ...todolistTasks]
         setTasks({...tasks})
-    }
-    const addTodolist = (title: string) => {
-        let newId = v1()
-        let newTodolist: TodolistType = {id: newId, title: title, filter: 'all'}
-        setTodolists([newTodolist, ...todolists])
-        setTasks({...tasks, [newId]: []})
     }
     const changeTaskTitle = (todolistId: string, taskId: string, newTitle: string) => {
         let todolistTasks = tasks[todolistId] //достаем нужный массив по id тудулиста
@@ -87,11 +92,7 @@ function App() {
         }
         setTasks({...tasks})
     }
-    const removeTodolist = (todolistId: string) => {
-        todolists = todolists.filter((tl) => tl.id !== todolistId)
-        delete tasks[todolistId]
-        setTodolists([...todolists])
-    }
+
     return (
         <div className="App">
             <AppBar position="static">
