@@ -1,6 +1,7 @@
-import {TasksStateType} from "../App";
+
 import {v1} from "uuid";
-import {AddTodolistACType, RemoveTodolistACType} from "./todolists-reducer";
+import {AddTodolistACType, RemoveTodolistACType, todolistId1, todolistId2} from "./todolists-reducer";
+import {TasksStateType} from "../AppWithRedux";
 
 export type AddTaskACType = { type: 'ADD-TASK', todolistId: string, title: string }
 export type RemoveTaskACType = { type: 'REMOVE-TASK', todolistId: string, taskId: string }
@@ -13,7 +14,18 @@ export type TasksACType =
     | ChangeTaskStatusACType
     | AddTodolistACType | RemoveTodolistACType
 
-export const tasksReducer = (state: TasksStateType, action: TasksACType): TasksStateType => {
+const initialState:TasksStateType = {
+    [todolistId1]: [
+        {id: v1(), title: "HTML", isDone: true},
+        {id: v1(), title: "CSS", isDone: true},
+        {id: v1(), title: "React", isDone: false}
+    ], [todolistId2]: [
+        {id: v1(), title: "iPad", isDone: true},
+        {id: v1(), title: "Canon", isDone: true},
+        {id: v1(), title: "iPhone", isDone: false}
+    ]
+}
+export const tasksReducer = (state: TasksStateType = initialState, action: TasksACType): TasksStateType => {
     switch (action.type) {
         case 'ADD-TASK': {
             const newTask = {id: v1(), title: action.title, isDone: false} //создаем шаблон новой таски, тайтл берем из action
@@ -61,7 +73,8 @@ export const tasksReducer = (state: TasksStateType, action: TasksACType): TasksS
             return stateCopy
         }
         default:
-            throw new Error("I don't understand this action type")
+            return state
+        //  throw new Error("I don't understand this action type")
     }
 };
 export const addTaskAC = (todolistId: string, title: string): AddTaskACType => {

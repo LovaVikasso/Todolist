@@ -1,6 +1,6 @@
 import {addTodolistAC, changeFilterAC, changeTitleAC, removeTodolistAC, todolistsReducer} from './todolists-reducer'
 import {v1} from "uuid";
-import {TodolistType} from "../App";
+import {TodolistType} from "../AppWithRedux";
 
 
 test('todolists reducer should add new todolist', () => {
@@ -9,7 +9,7 @@ test('todolists reducer should add new todolist', () => {
         {id: v1(), title: "What to buy", filter: 'completed'},
     ]
     const newTitle = "New words"
-    const action = addTodolistAC(newTitle)
+    const action = addTodolistAC('3',newTitle)
     const endState = todolistsReducer(startState, action)
 
     expect(endState[0].title).toBe(newTitle);

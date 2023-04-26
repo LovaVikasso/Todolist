@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from 'react';
-import {FilterValueType, TaskType} from "./App";
 import {AddItemForm} from "./Components/AddItemForm";
 import {EditableSpan} from "./Components/EditableSpan";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
+import {FilterValueType, TaskType} from "./AppWithRedux";
 
 
 type PropsType = {
