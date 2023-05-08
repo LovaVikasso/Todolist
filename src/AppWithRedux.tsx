@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import './App.css';
 import {Todolist} from "./Todolist";
 import {v1} from "uuid";
@@ -12,7 +12,6 @@ import {
     changeTitleAC,
     removeTodolistAC
 } from "./state/todolists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootType} from "./state/store";
 
@@ -31,24 +30,24 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-export function AppWithRedux() {
+export const AppWithRedux = () => {
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootType, Array<TodolistType>>(state => state.todolists)
 
-    const changeFilter = (todolistId: string, value: FilterValueType) => {
-        dispatch(changeFilterAC(todolistId, value))
-    }
-    const changeTodolistTitle = (todolistId: string, newTitle: string) => {
-        dispatch(changeTitleAC(todolistId, newTitle))
-    }
-    const addTodolist = (title: string) => {
+    const addTodolist = useCallback((title: string) => {
         const action = addTodolistAC(v1(), title) //здесь выносим в переменную, потому что будет 1 id
         dispatch(action)
-    }
-    const removeTodolist = (todolistId: string) => {
+    }, [dispatch])
+    const removeTodolist = useCallback((todolistId: string) => {
         dispatch(removeTodolistAC(todolistId))
 
-    }
+    },[dispatch])
+    const changeTodolistTitle = useCallback((todolistId: string, newTitle: string) => {
+        dispatch(changeTitleAC(todolistId, newTitle))
+    },[dispatch])
+    const changeFilter = useCallback((todolistId: string, value: FilterValueType) => {
+        dispatch(changeFilterAC(todolistId, value))
+    },[dispatch])
 
     return (
         <div className="App">
@@ -70,7 +69,7 @@ export function AppWithRedux() {
                 <Grid container spacing={3}>
                     {todolists.map((tl) => {
 
-                        return <Grid item>
+                        return <Grid item key={tl.id}>
                             <Paper elevation={3} style={{padding: "20px"}}>
                                 <Todolist key={tl.id} id={tl.id} title={tl.title}
                                           removeTodolist={removeTodolist}
