@@ -1,7 +1,7 @@
 
 import {v1} from "uuid";
 import {AddTodolistACType, RemoveTodolistACType} from "./todolists-reducer";
-import {TasksStateType} from "../AppWithRedux";
+import {TasksStateType} from "../App";
 
 export type AddTaskACType = { type: 'ADD-TASK', todolistId: string, title: string }
 export type RemoveTaskACType = { type: 'REMOVE-TASK', todolistId: string, taskId: string }

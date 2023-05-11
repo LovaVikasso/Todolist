@@ -1,6 +1,6 @@
 import {addTodolistAC, changeFilterAC, changeTitleAC, removeTodolistAC, todolistsReducer} from './todolists-reducer'
 import {v1} from "uuid";
-import {TodolistType} from "../AppWithRedux";
+import {TodolistType} from "../App";
 
 
 test('todolists reducer should add new todolist', () => {

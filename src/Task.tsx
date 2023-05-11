@@ -4,7 +4,7 @@ import {Checkbox, IconButton} from "@material-ui/core";
 import {EditableSpan} from "./Components/EditableSpan";
 import {Delete} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
-import {TaskType} from "./AppWithRedux";
+import {TaskType} from "./App";
 
 type TaskPropsType = {
     todolistId: string

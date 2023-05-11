@@ -4,7 +4,7 @@ import {EditableSpan} from "./Components/EditableSpan";
 import {Checkbox, IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
-import {FilterValueType, TaskType} from "./AppWithRedux";
+import {FilterValueType, TaskType} from "./App";
 import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootType} from "./state/store";

@@ -30,7 +30,7 @@ export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
-export const AppWithRedux = () => {
+export const App = () => {
     const dispatch = useDispatch()
     const todolists = useSelector<AppRootType, Array<TodolistType>>(state => state.todolists)
 
