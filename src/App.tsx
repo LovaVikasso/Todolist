@@ -9,30 +9,20 @@ import Button from "@material-ui/core/Button";
 import {
     addTodolistAC,
     changeFilterAC,
-    changeTitleAC,
-    removeTodolistAC
+    changeTitleAC, FilterValueType,
+    removeTodolistAC, TodolistDomainType
 } from "./state/todolists-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootType} from "./state/store";
+import {TaskType, TodolistType} from "./api/todolists-api";
 
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
-export type FilterValueType = "all" | "completed" | "active"
-export type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValueType
-}
 export type TasksStateType = {
     [key: string]: Array<TaskType>
 }
 
 export const App = () => {
     const dispatch = useDispatch()
-    const todolists = useSelector<AppRootType, Array<TodolistType>>(state => state.todolists)
+    const todolists = useSelector<AppRootType, Array<TodolistDomainType>>(state => state.todolists)
 
     const addTodolist = useCallback((title: string) => {
         const action = addTodolistAC(v1(), title) //здесь выносим в переменную, потому что будет 1 id

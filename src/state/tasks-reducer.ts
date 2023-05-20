@@ -1,12 +1,12 @@
-
 import {v1} from "uuid";
 import {AddTodolistACType, RemoveTodolistACType} from "./todolists-reducer";
 import {TasksStateType} from "../App";
+import {TaskPriorities, TaskStatuses, TaskType} from "../api/todolists-api";
 
 export type AddTaskACType = { type: 'ADD-TASK', todolistId: string, title: string }
 export type RemoveTaskACType = { type: 'REMOVE-TASK', todolistId: string, taskId: string }
 export type ChangeTaskTitleACType = { type: 'CHANGE-TASK-TITLE', todolistId: string, taskId: string, newTitle: string }
-export type ChangeTaskStatusACType = { type: 'CHANGE-TASK-STATUS', todolistId: string, taskId: string, newStatus: boolean }
+export type ChangeTaskStatusACType = { type: 'CHANGE-TASK-STATUS', todolistId: string, taskId: string, newStatus: TaskStatuses }
 export type TasksACType =
     AddTaskACType
     | RemoveTaskACType
@@ -14,12 +14,22 @@ export type TasksACType =
     | ChangeTaskStatusACType
     | AddTodolistACType | RemoveTodolistACType
 
-const initialState:TasksStateType = {
-}
+const initialState: TasksStateType = {}
 export const tasksReducer = (state: TasksStateType = initialState, action: TasksACType): TasksStateType => {
     switch (action.type) {
         case 'ADD-TASK': {
-            const newTask = {id: v1(), title: action.title, isDone: false} //создаем шаблон новой таски, тайтл берем из action
+            const newTask:TaskType = {
+                description: '',
+                title: action.title,
+                status: TaskStatuses.New,
+                priority: TaskPriorities.High,
+                startDate: '',
+                deadline: '',
+                id: v1(),
+                todoListId: action.todolistId,
+                order: 0,
+                addedDate: 'string'
+            } //создаем шаблон новой таски, тайтл берем из action
             const stateCopy = {...state} //создаем копию
             const tasks = stateCopy[action.todolistId] //берем нужный нам массив по ключу (тудулист Id) из стейта
             stateCopy[action.todolistId] = [newTask, ...tasks] //меняем в копии по тому же ключу, доавляем в начало массива новую таску
@@ -43,7 +53,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Tasks
             const stateCopy = {...state}
             stateCopy[action.todolistId] = stateCopy[action.todolistId].map((t) => t.id === action.taskId ? {
                 ...t,
-                isDone: !t.isDone
+                status: action.newStatus
             } : t)
             return stateCopy
         }
@@ -72,6 +82,6 @@ export const removeTaskAC = (todolistId: string, taskId: string): RemoveTaskACTy
 export const changeTaskTitleAC = (todolistId: string, taskId: string, newTitle: string): ChangeTaskTitleACType => {
     return {type: 'CHANGE-TASK-TITLE', todolistId, taskId, newTitle} as const
 }
-export const changeTaskStatusAC = (todolistId: string, taskId: string, newStatus: boolean): ChangeTaskStatusACType => {
+export const changeTaskStatusAC = (todolistId: string, taskId: string, newStatus: TaskStatuses): ChangeTaskStatusACType => {
     return {type: 'CHANGE-TASK-STATUS', todolistId, taskId, newStatus} as const
 }

@@ -4,11 +4,12 @@ import {EditableSpan} from "./Components/EditableSpan";
 import {IconButton} from "@material-ui/core";
 import {Delete} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
-import {FilterValueType, TaskType} from "./App";
 import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {AppRootType} from "./state/store";
 import {Task} from "./Task";
+import {FilterValueType} from "./state/todolists-reducer";
+import {TaskStatuses, TaskType} from "./api/todolists-api";
 
 
 type PropsType = {
@@ -18,7 +19,6 @@ type PropsType = {
     changeTodolistTitle: (todolistId: string, title: string) => void
     changeFilter: (todolistId: string, value: FilterValueType) => void
     filter: FilterValueType
-
 }
 export const Todolist = React.memo((props: PropsType) => {
     console.log('Todolist rendered')
@@ -47,10 +47,10 @@ export const Todolist = React.memo((props: PropsType) => {
     }
     let tasksForTodolist = tasks
     if (props.filter === "completed") {
-        tasksForTodolist = tasksForTodolist.filter((t) => t.isDone)
+        tasksForTodolist = tasksForTodolist.filter((t) => t.status===TaskStatuses.Completed)
     }
     if (props.filter === "active") {
-        tasksForTodolist = tasksForTodolist.filter((t) => !t.isDone)
+        tasksForTodolist = tasksForTodolist.filter((t) => t.status===TaskStatuses.New)
     }
 // берем айди этого тудулиста, он пришлел в пропсах,
 // и используем второй аргумент (название таски) из addItemForm,
