@@ -6,10 +6,10 @@ import {Delete} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {addTaskAC} from "./state/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootType} from "./state/store";
+import {AppRootType, useAppSelector} from "./state/store";
 import {Task} from "./Task";
 import {FilterValueType} from "./state/todolists-reducer";
-import {TaskStatuses, TaskType} from "./api/todolists-api";
+import {TaskStatuses} from "./api/todolists-api";
 
 
 type PropsType = {
@@ -24,7 +24,7 @@ export const Todolist = React.memo((props: PropsType) => {
     console.log('Todolist rendered')
     let todolistId = props.id
     const dispatch = useDispatch()
-    const tasks = useSelector<AppRootType, Array<TaskType>>(state => state.tasks[todolistId])
+    const tasks = useAppSelector(state => state.tasks[todolistId])
 
     const onAllClickHandler = useCallback(() => {
         props.changeFilter(todolistId, "all")
