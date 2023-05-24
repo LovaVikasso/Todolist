@@ -7,13 +7,13 @@ import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@
 import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import {
-    addTodolistAC,
+    addTodolistTC,
     changeFilterAC,
-    changeTitleAC, fetchTodolistsTC, FilterValueType,
-    removeTodolistAC
+    changeTodolistTitleTC, fetchTodolistsTC, FilterValueType,
+    removeTodolistTC
 } from "./state/todolists-reducer";
 
-import { useAppDispatch, useAppSelector} from "./state/store";
+import {useAppDispatch, useAppSelector} from "./state/store";
 import {TaskType} from "./api/todolists-api";
 
 export type TasksStateType = {
@@ -29,15 +29,15 @@ export const App = () => {
     }, [])
 
     const addTodolist = useCallback((title: string) => {
-        const action = addTodolistAC(v1(), title) //здесь выносим в переменную, потому что будет 1 id
+        const action = addTodolistTC(title)
         dispatch(action)
     }, [dispatch])
     const removeTodolist = useCallback((todolistId: string) => {
-        dispatch(removeTodolistAC(todolistId))
+        dispatch(removeTodolistTC(todolistId))
 
     }, [dispatch])
     const changeTodolistTitle = useCallback((todolistId: string, newTitle: string) => {
-        dispatch(changeTitleAC(todolistId, newTitle))
+        dispatch(changeTodolistTitleTC(todolistId, newTitle))
     }, [dispatch])
     const changeFilter = useCallback((todolistId: string, value: FilterValueType) => {
         dispatch(changeFilterAC(todolistId, value))
