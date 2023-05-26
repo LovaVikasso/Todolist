@@ -8,7 +8,7 @@ import { addTaskTC, fetchTasksTC} from "./state/tasks-reducer";
 import {useAppDispatch, useAppSelector} from "./state/store";
 import {Task} from "./Task";
 import {FilterValueType} from "./state/todolists-reducer";
-import {TaskStatuses} from "./api/todolists-api";
+import {TaskStatuses} from "./API/todolists-api";
 
 
 type PropsType = {
@@ -27,7 +27,7 @@ export const Todolist = React.memo((props: PropsType) => {
 
     useEffect(()=>{
         dispatch(fetchTasksTC(todolistId))
-    },[todolistId])
+    },[dispatch,todolistId])
 
     const onAllClickHandler = useCallback(() => {
         props.changeFilter(todolistId, "all")

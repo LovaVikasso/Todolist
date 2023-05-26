@@ -1,8 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import './App.css';
-import {Todolist} from "./Todolist";
-import {v1} from "uuid";
-import {AddItemForm} from "./Components/AddItemForm";
+import {Todolist} from "../Todolist";
+import {AddItemForm} from "../Components/AddItemForm";
 import {AppBar, Container, Grid, IconButton, Paper, Toolbar, Typography} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
@@ -11,10 +10,10 @@ import {
     changeFilterAC,
     changeTodolistTitleTC, fetchTodolistsTC, FilterValueType,
     removeTodolistTC
-} from "./state/todolists-reducer";
+} from "../state/todolists-reducer";
 
-import {useAppDispatch, useAppSelector} from "./state/store";
-import {TaskType} from "./api/todolists-api";
+import {useAppDispatch, useAppSelector} from "../state/store";
+import {TaskType} from "../API/todolists-api";
 
 export type TasksStateType = {
     [key: string]: Array<TaskType>
