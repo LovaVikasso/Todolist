@@ -1,6 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {IconButton, TextField} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
+import './AddItemForm.css';
 
 type AddItemsProps = {
     addItem: (title: string) => void
@@ -27,7 +28,7 @@ export const AddItemForm = React.memo((props: AddItemsProps) => {
         }
     }
     return (
-        <div>
+        <div className='AddItemForm'>
             <div>
                 <TextField
                     variant={"outlined"}

@@ -1,6 +1,5 @@
-import {TasksStateType} from "../App/App";
 import {addTodolistAC, TodolistDomainType, todolistsReducer} from "../state/todolists-reducer";
-import {tasksReducer} from "../state/tasks-reducer";
+import {tasksReducer, TasksStateType} from "../state/tasks-reducer";
 
 
 test('ids should be equals', () => {

@@ -1,5 +1,4 @@
 import {AddTodolistACType, RemoveTodolistACType, SetTodolistACType} from "./todolists-reducer";
-import {TasksStateType} from "../App/App";
 import {TaskPriorities, TaskStatuses, TaskType, todolistsAPI, UpdateTaskModelType} from "../API/todolists-api";
 import {AppRootType, AppThunk} from "./store";
 //types
@@ -11,13 +10,16 @@ export type TasksACType =
     | AddTodolistACType
     | RemoveTodolistACType
     | SetTodolistACType
-type UpdateDomainTaskModelType = {
+export type UpdateDomainTaskModelType = {
     title?: string
     description?: string
     status?: TaskStatuses
     priority?: TaskPriorities
     startDate?: string
     deadline?: string
+}
+export type TasksStateType = {
+    [key: string]: Array<TaskType>
 }
 const initialState: TasksStateType = {}
 export const tasksReducer = (state: TasksStateType = initialState, action: TasksACType): TasksStateType => {
