@@ -5,14 +5,15 @@ import './AddItemForm.css';
 
 type AddItemsProps = {
     addItem: (title: string) => void
+    disabled?:boolean
 }
-export const AddItemForm = React.memo((props: AddItemsProps) => {
+export const AddItemForm = React.memo(({addItem, disabled = false}: AddItemsProps) => {
     const [title, setTitle] = useState('')
     const [error, setError] = useState('')
 
-    const addItem = () => {
+    const addItemHandler = () => {
         if (title.trim() !== "") {
-            props.addItem(title.trim())
+            addItem(title.trim())
             setTitle("")
         } else {
             setError('Title is required')
@@ -24,7 +25,7 @@ export const AddItemForm = React.memo((props: AddItemsProps) => {
     }
     const onKeyDownHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
-            addItem();
+            addItemHandler();
         }
     }
     return (
@@ -38,7 +39,7 @@ export const AddItemForm = React.memo((props: AddItemsProps) => {
                     onKeyDown={onKeyDownHandler}
                     helperText={error }
                     error={!!error}/>
-                <IconButton onClick={addItem}>
+                <IconButton onClick={addItemHandler} disabled={disabled}>
                     <Add />
                 </IconButton>
             </div>

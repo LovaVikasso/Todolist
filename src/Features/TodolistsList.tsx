@@ -51,7 +51,9 @@ export const TodolistsList = () => {
 
                     return <Grid item key={tl.id}>
                         <Paper elevation={3} style={{padding: "20px"}}>
-                            <Todolist key={tl.id} id={tl.id} title={tl.title}
+
+                            <Todolist key={tl.id}
+                                      todolist={tl}
                                       tasks={tasks[tl.id]}
                                       removeTodolist={removeTodolist}
                                       changeTodolistTitle={changeTodolistTitle}
@@ -59,7 +61,7 @@ export const TodolistsList = () => {
                                       addTask={addTask}
                                       updateTask={updateTask}
                                       removeTask={removeTask}
-                                      filter={tl.filter}/>
+                                     />
                         </Paper>
                     </Grid>
                 })
