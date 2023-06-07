@@ -5,7 +5,6 @@ import {EditableSpan} from "../Components/EditableSpan";
 import {Delete} from "@material-ui/icons";
 import {TaskStatuses, TaskType,} from "../API/todolists-api";
 
-
 type TaskPropsType = {
     task: TaskType
     updateTask: (taskId: string, model: UpdateDomainTaskModelType) => void
@@ -23,7 +22,6 @@ export const Task = React.memo((props: TaskPropsType) => {
     const onChangeTitleHandler = useCallback((newTitle:string)=>{
         updateTask(task.id,{title:newTitle})
     },[updateTask,task.id])
-
 
     return <div className={task.status === TaskStatuses.Completed ? "is-done" : "task"} key={task.id}>
         <Checkbox
