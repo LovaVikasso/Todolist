@@ -35,7 +35,9 @@ export const Todolist: React.FC<PropsType> = React.memo((props: PropsType) => {
         updateTask,
         removeTask
     } = props
+
     const dispatch = useAppDispatch()
+
     useEffect(() => {
         dispatch(fetchTasksTC(todolist.id))
     }, [dispatch, todolist.id])

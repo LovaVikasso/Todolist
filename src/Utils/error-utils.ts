@@ -1,5 +1,5 @@
 import {
-    setAppErrorAC,
+    SetAppErrorAC,
     SetErrorACType,
     setAppStatusAC,
     SetStatusACType
@@ -10,15 +10,15 @@ import {ResponseType} from "../API/todolists-api";
 // generic function
 export const handleServerAppError = <T>(data: ResponseType<T>, dispatch: ErrorUtilsDispatchType) => {
     if (data.messages.length) {
-        dispatch(setAppErrorAC(data.messages[0]))
+        dispatch(SetAppErrorAC(data.messages[0]))
     } else {
-        dispatch(setAppErrorAC('Some error occurred'))
+        dispatch(SetAppErrorAC('Some error occurred'))
     }
     dispatch(setAppStatusAC('failed'))
 }
 
 export const handleServerNetworkError = (error: { message: string }, dispatch: ErrorUtilsDispatchType) => {
-    dispatch(setAppErrorAC(error.message))
+    dispatch(SetAppErrorAC(error.message))
     dispatch(setAppStatusAC('failed'))
 }
 

@@ -86,7 +86,7 @@ export const addTaskTC = (todolistId: string, title: string): AppThunk => async 
         } else {
             handleServerAppError(res.data, dispatch)
             // if (res.data.messages.length) {
-            //     dispatch(setAppErrorAC(res.data.messages[0]))
+            //     dispatch(SetAppErrorAC(res.data.messages[0]))
             // } else {
             //     dispatch(setAppStatusAC('failed'))
             // }
