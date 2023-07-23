@@ -1,28 +1,31 @@
-import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {TodolistACType, todolistsReducer} from "./todolists-reducer";
-import {TasksACType, tasksReducer} from "./tasks-reducer";
-import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk";
-import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
-import {appReducer} from "./app-reducer";
-import {authReducer} from "./auth-reducer";
+import {AnyAction, combineReducers} from "redux";
+import { todolistsReducer } from "./todolists-reducer";
+import { tasksReducer } from "./tasks-reducer";
+import thunkMiddleware, { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { appReducer } from "./app-reducer";
+import { authReducer } from "./auth-reducer";
+import {configureStore} from "@reduxjs/toolkit";
 
 const rootReducer = combineReducers({
-    todolists: todolistsReducer,
-    tasks: tasksReducer,
-    app:appReducer,
-    auth: authReducer
+  todolists: todolistsReducer,
+  tasks: tasksReducer,
+  app: appReducer,
+  auth: authReducer,
+});
+export const useAppSelector: TypedUseSelectorHook<AppRootType> = useSelector;
+export const useAppDispatch = () => useDispatch<AppDispatchType>();
+type AppDispatchType = ThunkDispatch<AppRootType, unknown, AnyAction>;
+
+export type AppRootType = ReturnType<typeof store.getState>;
+// export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(thunkMiddleware),
 })
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector
-export const useAppDispatch = () => useDispatch<AppDispatchType>()
-type AppDispatchType = ThunkDispatch<AppRootType, unknown, AppActionsType>
 
-export type AppRootType = ReturnType<typeof rootReducer>
-export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
-export type RootState = ReturnType<typeof store.getState>
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootType, unknown, AnyAction>;
 
-export type AppActionsType = TodolistACType | TasksACType
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppRootType, unknown, AppActionsType>
 // для того чтобы можно было в консоли браузера обращаться к store в любой момент
 // @ts-ignore
 window.store = store;
-
