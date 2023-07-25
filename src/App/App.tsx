@@ -5,17 +5,20 @@ import { Menu } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import { TodolistsList } from "Features/TodolistsList";
 import { ErrorSnackBar } from "Components/ErrorSnackBar/ErrorSnackBar";
-import { useAppDispatch, useAppSelector } from "state/store";
+import { useAppDispatch} from "state/store";
 import { Login } from "Features/Login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import { initializeAppTC } from "state/app-reducer";
 import { logoutTC } from "state/auth-reducer";
+import {selectIsLoggedIn} from "state/auth.selector";
+import {useSelector} from "react-redux";
+import {selectAppStatus, selectIiInitialized} from "state/app.selector";
 
 export const App = () => {
-  const status = useAppSelector((state) => state.app.status);
-  const isInitialized = useAppSelector((state) => state.app.isInitialized);
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const status = useSelector(selectAppStatus)
+  const isInitialized = useSelector(selectIiInitialized)
+  const isLoggedIn = useSelector(selectIsLoggedIn);
   const dispatch = useAppDispatch();
 
   useEffect(() => {

@@ -7,16 +7,20 @@ import {
 import React, {useCallback, useEffect} from "react";
 import {Grid, Paper} from "@material-ui/core";
 import {Todolist} from "./Todolist";
-import {useAppDispatch, useAppSelector} from "state/store";
+import {useAppDispatch} from "state/store";
 import {AddItemForm} from "Components/AddItemForm/AddItemForm";
 import {addTaskTC, removeTaskTC, UpdateDomainTaskModelType, updateTaskTC} from "state/tasks-reducer";
 import {Navigate} from "react-router-dom";
+import {useSelector} from "react-redux";
+import {selectTodolists} from "state/todolists.selector";
+import {selectIsLoggedIn} from "state/auth.selector";
+import {selectTasks} from "state/tasks.selector";
 
 export const TodolistsList = () => {
     const dispatch = useAppDispatch();
-    const todolists = useAppSelector((state) => state.todolists);
-    const tasks = useAppSelector((state) => state.tasks);
-    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    const todolists =  useSelector(selectTodolists);
+    const tasks = useSelector(selectTasks);
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
     useEffect(() => {
         if (!isLoggedIn) {
