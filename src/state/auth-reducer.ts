@@ -3,6 +3,7 @@ import {authAPI, LoginType} from "API/todolists-api";
 import {handleServerAppError, handleServerNetworkError} from "Utils/error-utils";
 import {AppThunk} from "state/store";
 import {appActions} from "state/app-reducer";
+import {todolistsActions} from "state/todolists-reducer";
 
 const slice = createSlice({
     name: 'auth',
@@ -36,6 +37,7 @@ export const logoutTC = (): AppThunk => async (dispatch) => {
         const response = await authAPI.logout();
         if (response.data.resultCode === 0) {
             dispatch(authActions.setIsLoggedIn({isLoggedIn: false}));
+            dispatch(todolistsActions.clearTodolistsData())
             dispatch(appActions.setAppStatus({status: "succeeded"}));
         } else {
             handleServerAppError(response.data, dispatch);
