@@ -9,7 +9,7 @@ import {Grid, Paper} from "@material-ui/core";
 import {Todolist} from "./Todolist";
 import {useAppDispatch} from "state/store";
 import {AddItemForm} from "Components/AddItemForm/AddItemForm";
-import {addTaskTC, removeTaskTC, UpdateDomainTaskModelType, updateTaskTC} from "state/tasks-reducer";
+import {tasksThunks, UpdateDomainTaskModelType} from "state/tasks-reducer";
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectTodolists} from "state/todolists.selector";
@@ -55,19 +55,19 @@ export const TodolistsList = () => {
     );
     const addTask = useCallback(
         (todolistId: string, title: string) => {
-            dispatch(addTaskTC(todolistId, title));
+            dispatch(tasksThunks.addTask({todolistId, title}));
         },
         [dispatch],
     );
     const updateTask = useCallback(
-        (todolistId: string, taskId: string, model: UpdateDomainTaskModelType) => {
-            dispatch(updateTaskTC(todolistId, taskId, model));
+        (todolistId: string, taskId: string, domainModel: UpdateDomainTaskModelType) => {
+            dispatch(tasksThunks.updateTask({todolistId, taskId, domainModel}));
         },
         [dispatch],
     );
     const removeTask = useCallback(
         (todolistId: string, taskId: string) => {
-            dispatch(removeTaskTC(todolistId, taskId));
+            dispatch(tasksThunks.removeTask({todolistId, taskId}));
         },
         [dispatch],
     );

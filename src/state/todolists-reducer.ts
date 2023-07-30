@@ -2,8 +2,8 @@ import {todolistsAPI, TodolistType} from "API/todolists-api"
 import {appActions, RequestStatusType} from "state/app-reducer";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "state/store";
-import {handleServerNetworkError} from "Utils/error-utils";
-import {fetchTasksTC} from "state/tasks-reducer";
+import {handleServerNetworkError} from "Utils/handleServerNetworkError";
+import {fetchTasks} from "state/tasks-reducer";
 
 
 export type FilterValuesType = "all" | "active" | "completed"
@@ -66,7 +66,7 @@ export const fetchTodolistsTC = (): AppThunk => {
             })
             .then((todos)=> {
                 todos.forEach((tl)=>{
-                    dispatch(fetchTasksTC(tl.id))
+                    dispatch(fetchTasks(tl.id))
                 })
             })
             .catch((error) => {

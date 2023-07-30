@@ -29,7 +29,7 @@ export const Todolist: React.FC<PropsType> = React.memo((props: PropsType) => {
   // const dispatch = useAppDispatch();
 
   // useEffect(() => {
-  //   dispatch(fetchTasksTC(todolist.id));
+  //   dispatch(fetchTasks(todolist.id));
   // }, [dispatch, todolist.id]);
 
   const onAllClickHandler = useCallback(() => {

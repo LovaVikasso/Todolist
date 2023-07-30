@@ -111,6 +111,14 @@ export type UpdateTaskModelType = {
   startDate: string;
   deadline: string;
 };
+export type UpdateDomainTaskModelType = {
+  title?: string
+  description?: string
+  status?: TaskStatuses
+  priority?: TaskPriorities
+  startDate?: string
+  deadline?: string
+}
 export type GetTasksResponse = {
   error: string | null;
   totalCount: number;
@@ -127,3 +135,24 @@ export type UserType = {
   email: string;
   login: string;
 };
+
+export type AddTaskArgType = {
+  title: string
+  todolistId: string
+}
+
+export type UpdateTaskArgType = {
+  taskId: string,
+  domainModel: UpdateDomainTaskModelType,
+  todolistId: string
+}
+
+export type RemoveTaskArgType = {
+  todolistId: string
+  taskId: string
+}
+
+export type UpdateTodolistTitleArgType = {
+  id: string
+  title: string
+}

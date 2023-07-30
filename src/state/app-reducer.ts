@@ -1,8 +1,10 @@
 import {authAPI} from "API/todolists-api";
-import {handleServerAppError, handleServerNetworkError} from "Utils/error-utils";
+import {handleServerNetworkError} from "Utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AppThunk} from "state/store";
 import {authActions} from "state/auth-reducer";
+import {handleServerAppError} from "Utils";
+
 
 
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
