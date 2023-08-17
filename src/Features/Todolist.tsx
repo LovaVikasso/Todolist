@@ -1,11 +1,11 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect} from "react";
 import { AddItemForm } from "Components/AddItemForm/AddItemForm";
 import { EditableSpan } from "Components/EditableSpan";
 import { IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
-import {  UpdateDomainTaskModelType } from "state/tasks-reducer";
-// import { useAppDispatch } from "state/store";
+import {tasksThunks, UpdateDomainTaskModelType} from "state/tasks-reducer";
+import { useAppDispatch } from "state/store";
 import { FilterValuesType, TodolistDomainType } from "state/todolists-reducer";
 import { TaskStatuses, TaskType } from "API/todolists-api";
 import { Task } from "./Task";
@@ -25,9 +25,10 @@ type PropsType = {
 };
 export const Todolist: React.FC<PropsType> = React.memo((props: PropsType) => {
   const { todolist, tasks, removeTodolist, changeTodolistTitle, changeFilter, addTask, updateTask, removeTask } = props;
-
-  // const dispatch = useAppDispatch();
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(tasksThunks.fetchTasks(props.todolist.id));
+  }, []);
   // useEffect(() => {
   //   dispatch(fetchTasks(todolist.id));
   // }, [dispatch, todolist.id]);

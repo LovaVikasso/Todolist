@@ -1,8 +1,6 @@
 import {
-    addTodolistTC,
-    changeTodolistTitleTC,
-    fetchTodolistsTC, FilterValuesType,
-    removeTodolistTC, todolistsActions,
+    FilterValuesType,
+    todolistsActions, todolistsThunks,
 } from "state/todolists-reducer";
 import React, {useCallback, useEffect} from "react";
 import {Grid, Paper} from "@material-ui/core";
@@ -26,24 +24,24 @@ export const TodolistsList = () => {
         if (!isLoggedIn) {
             return;
         }
-        dispatch(fetchTodolistsTC());
+        dispatch(todolistsThunks.fetchTodolists());
     }, [dispatch]);
     const addTodolist = useCallback(
         (title: string) => {
-            const action = addTodolistTC(title);
+            const action = todolistsThunks.addTodolist(title);
             dispatch(action);
         },
         [dispatch],
     );
     const removeTodolist = useCallback(
         (todolistId: string) => {
-            dispatch(removeTodolistTC(todolistId));
+            dispatch(todolistsThunks.removeTodolist(todolistId));
         },
         [dispatch],
     );
     const changeTodolistTitle = useCallback(
-        (todolistId: string, newTitle: string) => {
-            dispatch(changeTodolistTitleTC(todolistId, newTitle));
+        (id: string, title: string) => {
+            dispatch(todolistsThunks.changeTodolistTitle({id, title}));
         },
         [dispatch],
     );
@@ -79,6 +77,7 @@ export const TodolistsList = () => {
         <>
             <Grid container style={{padding: "20px"}}>
                 <AddItemForm addItem={addTodolist}/>
+
             </Grid>
             <Grid container spacing={3}>
                 {todolists.map((tl) => {

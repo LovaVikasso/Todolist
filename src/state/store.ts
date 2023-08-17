@@ -18,6 +18,7 @@ export const useAppDispatch = () => useDispatch<AppDispatchType>();
 export type AppDispatchType = ThunkDispatch<AppRootType, unknown, AnyAction>;
 
 export type AppRootType = ReturnType<typeof store.getState>;
+
 // export const store = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware));
 export const store = configureStore({
   reducer: rootReducer,
