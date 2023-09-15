@@ -1,11 +1,4 @@
-import {authAPI} from "API/todolists-api";
-import {handleServerNetworkError} from "Utils";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AppThunk} from "state/store";
-import {authActions} from "state/auth-reducer";
-import {handleServerAppError} from "Utils";
-
-
 
 export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
 export type InitialType = {
@@ -34,21 +27,6 @@ const slice = createSlice({
     }
 })
 
-
-export const initializeAppTC = ():AppThunk => async (dispatch) => {
-    try {
-        const response = await authAPI.me();
-        if (response.data.resultCode === 0) {
-            dispatch(authActions.setIsLoggedIn({isLoggedIn: true}));
-        } else {
-            handleServerAppError(response.data, dispatch);
-        }
-    } catch (e) {
-        handleServerNetworkError((e as any).message, dispatch);
-    } finally {
-        dispatch(appActions.setIsInitialized({isInitialized: true}));
-    }
-};
 export const appReducer = slice.reducer;
 // export const {setIsLoggedIn} = slice.actions
 export const appActions = slice.actions

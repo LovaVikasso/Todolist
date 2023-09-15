@@ -9,11 +9,10 @@ import { useAppDispatch} from "state/store";
 import { Login } from "Features/Login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import { initializeAppTC } from "state/app-reducer";
-import { logoutTC } from "state/auth-reducer";
 import {selectIsLoggedIn} from "state/auth.selector";
 import {useSelector} from "react-redux";
 import {selectAppStatus, selectIiInitialized} from "state/app.selector";
+import {authThunks} from "state/auth-reducer";
 
 export const App = () => {
   const status = useSelector(selectAppStatus)
@@ -22,11 +21,11 @@ export const App = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(initializeAppTC());
+    dispatch(authThunks.initializeApp());
   }, []);
 
   const logOutHandler = useCallback(() => {
-    dispatch(logoutTC());
+    dispatch(authThunks.logout());
   }, []);
 
   if (!isInitialized) {
