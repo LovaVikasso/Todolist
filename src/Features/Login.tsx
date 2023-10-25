@@ -5,13 +5,13 @@ import FormGroup from "@mui/material/FormGroup";
 import FormLabel from "@mui/material/FormLabel";
 import TextField from "@mui/material/TextField";
 import { useFormik } from "formik";
-import { useAppDispatch } from "state/store";
+import { useAppDispatch } from "State/store";
 import { Navigate } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
-import {selectIsLoggedIn} from "state/auth.selector";
+import {selectIsLoggedIn} from "State/auth.selector";
 import {useSelector} from "react-redux";
-import {authThunks} from "state/auth-reducer";
+import {authThunks} from "State/auth-reducer";
 
 type FormikErrorType = {
   email?: string

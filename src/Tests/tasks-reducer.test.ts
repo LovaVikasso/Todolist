@@ -1,6 +1,6 @@
-import {tasksReducer, TasksStateType, tasksThunks} from "state/tasks-reducer";
 import {TaskPriorities, TaskStatuses} from "API/todolists-api";
-import {todolistsThunks} from "state/todolists-reducer";
+import {tasksReducer, TasksStateType, tasksThunks} from "State/tasks-reducer";
+import {todolistsThunks} from "State/todolists-reducer";
 
 
 const startState: TasksStateType = {
@@ -170,7 +170,18 @@ test("new array should be added when new todolist is added", () => {
 });
 test("property with todolistId should be deleted", () => {
     const action = todolistsThunks.removeTodolist.fulfilled({id: "todolistId2"}, "requestId", "todolistId2");
-
+// type RemoveTodolistType = {
+//     type: string
+//     payload: {
+//         id: string
+//     }
+// } для правильного создания action типпизируем
+// const _action: RemoveTodolistType = {
+//     type: todolistsThunks.removeTodolist.fulfilled.type,
+//     payload: {
+//         id: "todolistId2"
+//     }
+// } второй подход без requestId
     const endState = tasksReducer(startState, action);
 
     const keys = Object.keys(endState);

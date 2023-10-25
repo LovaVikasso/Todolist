@@ -4,9 +4,9 @@ import { EditableSpan } from "Components/EditableSpan";
 import { IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
-import {tasksThunks, UpdateDomainTaskModelType} from "state/tasks-reducer";
-import { useAppDispatch } from "state/store";
-import { FilterValuesType, TodolistDomainType } from "state/todolists-reducer";
+import {tasksThunks, UpdateDomainTaskModelType} from "State/tasks-reducer";
+import { useAppDispatch } from "State/store";
+import { FilterValuesType, TodolistDomainType } from "State/todolists-reducer";
 import { TaskStatuses, TaskType } from "API/todolists-api";
 import { Task } from "./Task";
 

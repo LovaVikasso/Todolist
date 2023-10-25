@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {authAPI, LoginType} from "API/todolists-api";
 import {createAppAsyncThunk, handleServerNetworkError} from "Utils";
-import {appActions} from "state/app-reducer";
-import {todolistsActions} from "state/todolists-reducer";
+import {appActions} from "State/app-reducer";
+import {todolistsActions} from "State/todolists-reducer";
 import {handleServerAppError} from "Utils";
 
 

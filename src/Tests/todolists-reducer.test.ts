@@ -1,7 +1,7 @@
 import {
   TodolistDomainType, todolistsActions,
   todolistsReducer, todolistsThunks,
-} from "state/todolists-reducer";
+} from "State/todolists-reducer";
 import { v1 } from "uuid";
 
 const startState: TodolistDomainType[] = [

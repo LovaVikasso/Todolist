@@ -5,14 +5,14 @@ import { Menu } from "@material-ui/icons";
 import Button from "@material-ui/core/Button";
 import { TodolistsList } from "Features/TodolistsList";
 import { ErrorSnackBar } from "Components/ErrorSnackBar/ErrorSnackBar";
-import { useAppDispatch} from "state/store";
+import { useAppDispatch} from "State/store";
 import { Login } from "Features/Login";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
-import {selectIsLoggedIn} from "state/auth.selector";
+import {selectIsLoggedIn} from "State/auth.selector";
 import {useSelector} from "react-redux";
-import {selectAppStatus, selectIiInitialized} from "state/app.selector";
-import {authThunks} from "state/auth-reducer";
+import {selectAppStatus, selectIiInitialized} from "State/app.selector";
+import {authThunks} from "State/auth-reducer";
 
 export const App = () => {
   const status = useSelector(selectAppStatus)
@@ -26,7 +26,7 @@ export const App = () => {
 
   const logOutHandler = useCallback(() => {
     dispatch(authThunks.logout());
-  }, []);
+  });
 
   if (!isInitialized) {
     return (

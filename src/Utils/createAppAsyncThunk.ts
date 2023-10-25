@@ -1,6 +1,6 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import {AppDispatchType, AppRootType} from "state/store";
+import {AppDispatchType, AppRootType} from "State/store";
 import {ResponseType} from "API/todolists-api";
 
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{

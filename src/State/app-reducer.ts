@@ -44,17 +44,17 @@ export const appActions = slice.actions
 //   isInitialized: false, //true когда приложение проинициализировалось (проверили юзера, получили настройки и тд)
 // };
 //
-// export const appReducer = (state: InitialType = initialState, action: ActionsType): InitialType => {
+// export const appReducer = (State: InitialType = initialState, action: ActionsType): InitialType => {
 //   switch (action.type) {
 //     case "APP/SET-STATUS": {
-//       return { ...state, status: action.status };
+//       return { ...State, status: action.status };
 //     }
 //     case "APP/SET-ERROR":
-//       return { ...state, error: action.error };
+//       return { ...State, error: action.error };
 //     case "APP/SET-IS-INITIALIZED":
-//       return { ...state, isInitialized: action.isInitialized };
+//       return { ...State, isInitialized: action.isInitialized };
 //     default:
-//       return state;
+//       return State;
 //   }
 // };
 //

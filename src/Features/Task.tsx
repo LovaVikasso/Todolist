@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback } from "react";
-import { UpdateDomainTaskModelType } from "state/tasks-reducer";
+import { UpdateDomainTaskModelType } from "State/tasks-reducer";
 import { Checkbox, IconButton } from "@material-ui/core";
 import { EditableSpan } from "Components/EditableSpan";
 import { Delete } from "@material-ui/icons";

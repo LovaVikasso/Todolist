@@ -1,18 +1,18 @@
 import {
     FilterValuesType,
     todolistsActions, todolistsThunks,
-} from "state/todolists-reducer";
+} from "State/todolists-reducer";
 import React, {useCallback, useEffect} from "react";
 import {Grid, Paper} from "@material-ui/core";
 import {Todolist} from "./Todolist";
-import {useAppDispatch} from "state/store";
+import {useAppDispatch} from "State/store";
 import {AddItemForm} from "Components/AddItemForm/AddItemForm";
-import {tasksThunks, UpdateDomainTaskModelType} from "state/tasks-reducer";
+import {tasksThunks, UpdateDomainTaskModelType} from "State/tasks-reducer";
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
-import {selectTodolists} from "state/todolists.selector";
-import {selectIsLoggedIn} from "state/auth.selector";
-import {selectTasks} from "state/tasks.selector";
+import {selectTodolists} from "State/todolists.selector";
+import {selectIsLoggedIn} from "State/auth.selector";
+import {selectTasks} from "State/tasks.selector";
 
 export const TodolistsList = () => {
     const dispatch = useAppDispatch();
