@@ -1,4 +1,4 @@
-import {ResponseType} from "API/todolists-api";
+import {ResponseType} from "API/types";
 import {Dispatch} from "redux";
 import {appActions} from "State/app-reducer";
 

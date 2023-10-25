@@ -1,4 +1,5 @@
-import {todolistsAPI, TodolistType, UpdateTodolistTitleArgType} from "API/todolists-api"
+import {todolistsAPI} from "API/todolists-api"
+import {TodolistType, UpdateTodolistTitleArgType} from "API/types"
 import {appActions, RequestStatusType} from "State/app-reducer";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {handleServerNetworkError} from "Utils/handleServerNetworkError";

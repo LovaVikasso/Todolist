@@ -18,3 +18,4 @@ export const ResultCode = {
     Error: 1,
     Captcha: 10,
 } as const;
+//вместо енамки сдалала объект

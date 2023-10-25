@@ -6,13 +6,13 @@ import React, {useCallback, useEffect} from "react";
 import {Grid, Paper} from "@material-ui/core";
 import {Todolist} from "./Todolist";
 import {useAppDispatch} from "State/store";
-import {AddItemForm} from "Components/AddItemForm/AddItemForm";
 import {tasksThunks, UpdateDomainTaskModelType} from "State/tasks-reducer";
 import {Navigate} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {selectTodolists} from "State/todolists.selector";
 import {selectIsLoggedIn} from "State/auth.selector";
 import {selectTasks} from "State/tasks.selector";
+import {AddItemForm} from "Components";
 
 export const TodolistsList = () => {
     const dispatch = useAppDispatch();

@@ -1,4 +1,4 @@
-import {TaskPriorities, TaskStatuses} from "API/todolists-api";
+import {TaskPriorities, TaskStatuses} from "API/types";
 import {tasksReducer, TasksStateType, tasksThunks} from "State/tasks-reducer";
 import {todolistsThunks} from "State/todolists-reducer";
 
