@@ -26,7 +26,7 @@ export const App = () => {
 
   const logOutHandler = useCallback(() => {
     dispatch(authThunks.logout());
-  });
+  }, []);
 
   if (!isInitialized) {
     return (
