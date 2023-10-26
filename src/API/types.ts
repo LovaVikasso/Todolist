@@ -18,12 +18,12 @@ export type TodolistType = {
     addedDate: string;
     order: number;
 };
-export type ResponseType<D = {}> = {
-    resultCode: number;
-    messages: Array<string>;
-    fieldsErrors: Array<string>;
-    data: D;
-};
+// export type ResponseType<D = {}> = {
+//     resultCode: number;
+//     messages: Array<string>;
+//     fieldsErrors: Array<string>;
+//     data: D;
+// };
 
 export enum TaskStatuses {
     New = 0,

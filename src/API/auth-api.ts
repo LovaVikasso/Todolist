@@ -1,18 +1,18 @@
 import { AxiosResponse } from "axios";
 import { instance } from "API/instance";
-import {LoginType, UserType, ResponseType} from "API/types";
+import {LoginType, UserType, BaseResponseType} from "API/types";
 
 export const authAPI = {
     login(data: LoginType) {
-        return instance.post<ResponseType<{ id?: number }>, AxiosResponse<ResponseType<{ id: number }>>, LoginType>(
+        return instance.post<BaseResponseType<{ id?: number }>, AxiosResponse<BaseResponseType<{ id: number }>>, LoginType>(
             "auth/login",
             data,
         );
     },
     logout() {
-        return instance.delete<ResponseType<{ id?: number }>>("auth/login");
+        return instance.delete<BaseResponseType<{ id?: number }>>("auth/login");
     },
     me() {
-        return instance.get<ResponseType<UserType>>("auth/me");
+        return instance.get<BaseResponseType<UserType>>("auth/me");
     },
 };

@@ -174,6 +174,4 @@ export const updateTask = createAppAsyncThunk<UpdateTaskArgType, UpdateTaskArgTy
 })
 
 export const tasksReducer = slice.reducer
-// export const {  } = slice.actions;
-// export const tasksActions = slice.actions
 export const tasksThunks = {fetchTasks, addTask, removeTask, updateTask}
