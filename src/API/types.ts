@@ -9,7 +9,7 @@ export type  FieldErrorType = {
 export type BaseResponseType<D = {}> = {
     resultCode: number;
     messages: Array<string>;
-    fieldsErrors: FieldErrorType
+    fieldsErrors: FieldErrorType[]
     data: D;
 }
 export type TodolistType = {
