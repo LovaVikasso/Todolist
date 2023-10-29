@@ -60,7 +60,7 @@ export const Login = () => {
         //     // //которые видет reject или fulfilled
         //     .unwrap()
         //     .catch((error: BaseResponseType) => {
-        //         error.fieldsErrors.forEach((fieldEr) => {
+        //         error.fieldsErrors?.forEach((fieldEr) => {
         //             formikHelpers.setFieldError(fieldEr.field, fieldEr.error)
         //         })
         //         // formikHelpers.setFieldError(error.fieldsErrors[0].field, error.fieldsErrors[0].error)
